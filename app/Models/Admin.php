@@ -9,5 +9,5 @@ class Admin extends Model
 {
     use HasFactory;
     protected $table = 'admin';
-    public $timestamps = false; // This line will disable the automatic timestamp columns
+    public $timestamps = false; 
 }
