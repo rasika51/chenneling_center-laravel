@@ -68,26 +68,7 @@ class PatientController extends Controller
 
     }
 
-    // public function paymentsave(request $request)
-    // {
-    //     // dd($request->all());
-
-    //     $id = $request->input('user');
-
-    //     $update = DB::update('update booking set payment = 1 where id = ?', [$id]);
-
-    //     if ($update > 0) {
-
-    //         $goto = 'viewAppoinmentPatien';
-    //         return redirect("/successfull?successMessage=Added%20successful&goto={$goto}&check=success&msg=success");
-
-    //     } else {
-    //         $goto = 'viewAppoinmentPatien';
-    //         return redirect("/successfull?successMessage=Try%20Again&goto={$goto}&check=error&msg=data%20Incorrect");
-
-    //     }
-
-    // }
+   
 
     public function getappoinment(request $request)
     {
