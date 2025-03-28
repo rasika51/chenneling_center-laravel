@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers; 
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -17,9 +16,9 @@ class DoctorController extends Controller
         $gender = $request->input('gender');
         $phoneNumber = $request->input('phoneNumber');
         $email = $request->input('Email');
-        $password = Hash::make($request->input('password')); // Hashing the password
-        // $changingDate = $request->input('changingDate');
-        // $changingTime = $request->input('changingTime');
+        $password = $request->input('password');
+        $changingDate = $request->input('changingDate');
+        $changingTime = $request->input('changingTime');
         $changingFees = $request->input('changingFees');
 
         $newdoctor = new Doctor([
@@ -28,9 +27,9 @@ class DoctorController extends Controller
             "Gender" => $gender,
             "contact_no" => $phoneNumber,
             "email" => $email,
-            "password" => $password, // Storing hashed password
-            // "ChangingDate" => $changingDate,
-            // "ChangingTime" => $changingTime,
+            "passward" => $password,
+            "ChangingDate" => $changingDate,
+            "ChangingTime" => $changingTime,
             "Fees" => $changingFees,
         ]);
 
