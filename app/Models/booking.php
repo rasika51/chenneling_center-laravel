@@ -15,8 +15,6 @@ class booking extends Model
         "doctorid",
         "date",
         "time",
-        "checKout",
-        // "payment",
         "marital_status",
         "payment_status",
         "status",
