@@ -15,6 +15,7 @@
                         <div class="navbar-nav ms-auto py-0">
                             <a href="/AddAppoinment" class="nav-item nav-link text-primary navhoverstyle">Add Appointments</a>
                             <a href="/viewAppoinmentPatien" class="nav-item nav-link text-primary navhoverstyle">View Appointments</a>
+                            <!-- <a href="/updateAppoinmentPatien" class="nav-item nav-link text-primary navhoverstyle">Update Appointments</a> -->
 
                         </div>
                     </div>
