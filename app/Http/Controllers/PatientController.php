@@ -95,35 +95,10 @@ class PatientController extends Controller
                 ->where('doctorid', $doctorid)
                 ->orderBy('add_time', 'asc')
                 ->get();
-
-
         }
 
         return response()->json(['appointment' => $appointment, 'userdata' => $userdata, 'Allappoinment' => $allAppoiment]);
 
     }
 
-    public function selectVailAppoinment(request $request)
-    {
-        $selectvalue = $request->input('selectedappointment');
-        $appointment = DB::select("SELECT * FROM booking WHERE id = '$selectvalue' ");
-
-        foreach ($appointment as $appointmentData) {
-
-            $userid = $appointmentData->userid;
-            $doctorid = $appointmentData->doctorid;
-
-            $userdata = DB::select("SELECT * FROM user WHERE id = '$userid'");
-            $allAppointments = DB::table('booking')
-            ->where('doctorid', $doctorid)
-            ->where('checkOut', '0')
-            ->where('payment', '1')
-            ->orderBy('add_time', 'asc')
-            ->get();
-
-        }
-
-        return response()->json(['appointment' => $appointment, 'userdata' => $userdata, 'Allappoinment' => $allAppointments]);
-
-    }
 }
