@@ -9,14 +9,14 @@ class booking extends Model
 {
     use HasFactory;
 
-    protected $table = 'booking';
+    protected $table = 'doctor_speclist';
     protected $fillable = [
         "userid",
         "doctorid",
         "date",
         "time",
         "checKout",
-        "payment",
+        // "payment",
         "marital_status",
         "payment_status",
         "status",

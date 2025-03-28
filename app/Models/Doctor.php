@@ -17,8 +17,8 @@ class Doctor extends Model
         "contact_no",
         "Specilization",
         "password",
-        // "ChangingDate",
-        // "ChangingTime",
+        "ChangingDate",
+        "ChangingTime",
         "Fees"
 
     ] ;
