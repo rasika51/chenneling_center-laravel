@@ -1,0 +1,326 @@
+:root {
+    --primary: #13C5DD;
+    --secondary: #354F8E;
+    --light: #EFF5F9;
+    --dark: #1D2A4D;
+}
+
+.admin_page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 170px;
+}
+
+.left-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 25%;
+    background-color: #fff;
+    padding: 45px 10px 10px 55px;
+    margin-top: 25px;
+}
+
+.square {
+
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #dfe1e2;
+    border-radius: 10px;
+    margin: 10px;
+    height: 230px;
+    width: 230px;
+    background-color: #fcfcfc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* transition: box-shadow 0.3s ease-in-out; */
+    transition: transform 0.3s ease-in-out;
+}
+
+.square:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* .square:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+} */
+
+h2 {
+
+    font-family: 'Jost', sans-serif;
+    align-items: center;
+    font-size: 15px;
+    margin-top: 4px;
+
+}
+
+.count {
+    font-size: 40px;
+    font-weight: bold;
+    color: #354F8E;
+}
+
+.square:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.icon {
+    font-size: 40px;
+    margin-top: 5px;
+}
+
+#doctorsCountSquare h2 {
+    margin-bottom: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: #13C5DD;
+    /* Change the background color as needed */
+    border-radius: 50%;
+    color: #fff;
+    /* Change the icon color as needed */
+    font-size: 30px;
+    /* Adjust the font size as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+
+
+/* .icon-wrapper:hover {
+    background-color: #2980b9; /* Change the hover background color as needed */
+
+.icon-wrapper:hover {
+    background-color: #3498db;
+    /* Change the hover background color as needed */
+    color: #fff;
+    /* Change the hover icon color as needed */
+}
+
+
+
+
+
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    margin-left: 30px;
+    padding: 30px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    outline: none;
+    transition: .5s;
+}
+
+.right-section {
+    margin-top: 5px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+.wrapper {
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    margin-top: 78px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease-in-out;
+}
+
+.wrapper:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.wrapper header {
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+    background-color: #13C5DD;
+}
+
+.current-date {
+    color: black;
+    font-family: 'Jost', sans-serif;
+}
+
+header .icons {
+    display: flex;
+}
+
+header .icons span {
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    color: #878787;
+    text-align: center;
+    line-height: 38px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+}
+
+.icons span:last-child {
+    margin-right: -10px;
+}
+
+header .icons span:hover {
+    background: #f2f2f2;
+}
+
+header .current-date {
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.calendar {
+    padding: 20px;
+}
+
+.calendar ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+
+.calendar .days {
+    margin-bottom: 20px;
+}
+
+.calendar li {
+    color: #333;
+    width: calc(100% / 7);
+    font-size: 1.07rem;
+}
+
+.calendar .weeks li {
+    font-weight: 500;
+    cursor: default;
+}
+
+.calendar .days li {
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    margin-top: 30px;
+}
+
+.days li.inactive {
+    color: #aaa;
+}
+
+.days li.active {
+    color: #fff;
+}
+
+.days li::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.days li.active::before {
+    background: #354F8E;
+}
+
+.days li:not(.active):hover::before {
+    background: #f2f2f2;
+}
+
+/* .navhoverstyle:hover {
+    text-decoration: underline;
+  } */
+
+
+  .navhoverstyle {
+    display: inline-block;
+    position: relative;
+    color: #000000;
+  }
+
+  .navhoverstyle::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .navhoverstyle:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+/* Existing CSS... */
+
+@media (max-width: 767.98px) {
+    .admin_page {
+        grid-template-columns: 1fr;
+        /* Change to a single column layout for small screens */
+        gap: 20px;
+    }
+
+    .right-section {
+        width: 100%;
+        /* Occupy the full width */
+        padding: 20px;
+        /* Adjust padding for better spacing */
+        margin-top: 15px;
+        /* Adjust top margin */
+    }
+
+    .left-section {
+        width: 100%;
+        /* Occupy the full width */
+        padding: 20px;
+        /* Adjust padding for better spacing */
+        margin-top: 15px;
+        /* Adjust top margin */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .square {
+        width: 100%;
+    }
+
+    .left-section {
+        order: -1;
+        /* Move the right section above the left section in the document flow */
+    }
+}
+
+/* Existing CSS... */

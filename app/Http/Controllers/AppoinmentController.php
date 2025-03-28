@@ -21,19 +21,13 @@ class AppoinmentController extends Controller
             "date" => $ChallengingDate,
             "time" => $ChallengingTime,
             "checKout" => '0',
-            "payment" => '0',
+            // "payment" => '0',
             "status" => '1',
             "patient_name"=>$patientName
         ]);
 
         $newbooking->save();
         $idnum = $newbooking->id;
-
-        $goto = "payment?id=" . urlencode($idnum) . "&pay=" . urlencode($Chengingfees);
-        return redirect("/successfull?successMessage=Added%20successful&goto={$goto}&check=success&msg=success");
-        // return redirect("/payment?id=".urlencode($idnum));
-
-
 
     }
 }
