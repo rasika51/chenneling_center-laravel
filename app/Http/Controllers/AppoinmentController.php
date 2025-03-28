@@ -20,9 +20,6 @@ class AppoinmentController extends Controller
             "doctorid" => $doctorSelect,
             "date" => $ChallengingDate,
             "time" => $ChallengingTime,
-            "checKout" => '0',
-            // "payment" => '0',
-            "status" => '1',
             "patient_name"=>$patientName
         ]);
 
