@@ -1,0 +1,139 @@
+.navbar-light .navbar-nav .nav-link {
+    font-family: 'Jost', sans-serif;
+    position: relative;
+    margin-left: 30px;
+    padding: 30px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    outline: none;
+    transition: .5s;
+}
+.right-section{
+    margin-top: 5px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+.form-container {
+    width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style form groups */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Style labels */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 540;
+    color: #333;
+}
+
+/* Style input and select elements */
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Jost', sans-serif;
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+/* Style buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.button-container{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.btn {
+    font-weight: 700;
+    transition: .5s;
+}
+.btn-primary {
+    color: #FFFFFF;
+    padding: 10px 20px;
+}
+
+
+.btn:hover {
+    -webkit-box-shadow: 0 8px 6px -6px #555555;
+    -moz-box-shadow: 0 8px 6px -6px #555555;
+    box-shadow: 0 8px 6px -6px #555555;
+}
+
+.navhoverstyle {
+    display: inline-block;
+    position: relative;
+    color: #000000;
+  }
+
+  .navhoverstyle::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .navhoverstyle:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+
+@media (max-width: 575.98px) {
+    .form-container{
+        width: 400px;
+    }
+}
+
+
+
+
+
+@media (min-width: 992px) {
+    .navbar-light .navbar-nav .nav-link::before {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 5px;
+        bottom: 0;
+        left: 50%;
+        background: var(--primary);
+        transition: .5s;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover::before,
+    .navbar-light .navbar-nav .nav-link.active::before {
+        width: 100%;
+        left: 0;
+    }
+}
