@@ -39,14 +39,14 @@ class PatientController extends Controller
         ]);
 
         $newPatient = new Patient([
-            'full_name' => $fullname,  // Changed to lowercase
+            'full_name' => $fullname,  
             'email' => $email,
             'gender' => $gender, 
             'dob' => $dob,
             'contact_no' => $contactnum,
             'address' => $addresss,
-            'marital_status' => $Marital_Married ?? 'Single', // Default to 'Single'
-            'allergic_medicine' => $Allegics_yes ?? 'No', // Default to 'None'
+            'marital_status' => $Marital_Married ?? 'Single',
+            'allergic_medicine' => $Allegics_yes ?? 'No', 
             'password' => bcrypt($password), // Encrypt password before saving!
         ]);
         $newPatient->save();
