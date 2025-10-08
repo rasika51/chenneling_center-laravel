@@ -10,6 +10,36 @@ class DoctorController extends Controller
 {
     public function addnewdoctor(Request $request)
     {
+        // Validate all required fields
+        $request->validate([
+            'doctorName' => 'required|string|max:255',
+            'Specialization' => 'required|string|in:Dental,Heart,Other',
+            'gender' => 'required|string|in:male,female',
+            'phoneNumber' => 'required|string|max:20',
+            'Email' => 'required|email|unique:doctor,email|max:255',
+            'password' => 'required|string|min:6|max:255',
+            'changingDate' => 'required|date',
+            'changingTime' => 'required',
+            'changingFees' => 'required|numeric|min:0'
+        ], [
+            'doctorName.required' => 'Doctor name is required',
+            'Specialization.required' => 'Specialization is required',
+            'Specialization.in' => 'Please select a valid specialization',
+            'gender.required' => 'Gender is required',
+            'gender.in' => 'Please select a valid gender',
+            'phoneNumber.required' => 'Phone number is required',
+            'Email.required' => 'Email is required',
+            'Email.email' => 'Please enter a valid email address',
+            'Email.unique' => 'This email is already registered',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be at least 6 characters',
+            'changingDate.required' => 'Changing date is required',
+            'changingDate.date' => 'Please enter a valid date',
+            'changingTime.required' => 'Changing time is required',
+            'changingFees.required' => 'Fees is required',
+            'changingFees.numeric' => 'Fees must be a number',
+            'changingFees.min' => 'Fees must be greater than or equal to 0'
+        ]);
 
         $doctorName = $request->input('doctorName');
         $Specialization = $request->input('Specialization');
@@ -27,7 +57,7 @@ class DoctorController extends Controller
             "Gender" => $gender,
             "contact_no" => $phoneNumber,
             "email" => $email,
-            "passward" => $password,
+            "passward" => bcrypt($password), // Encrypt password before saving
             "ChangingDate" => $changingDate,
             "ChangingTime" => $changingTime,
             "Fees" => $changingFees,
