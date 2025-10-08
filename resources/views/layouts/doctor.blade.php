@@ -26,9 +26,8 @@
 
     <!-- Template Stylesheet -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/doctor.css') }}">
     <script src="{{ asset('assets/js/admin.js') }}"></script>
-
-
     <link rel="stylesheet" href="{{ asset('assets/css/appoinment_details.css') }}">
 </head>
 
@@ -46,9 +45,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-
-
-
+                    <div class="navbar-nav ms-auto">
+                        <a href="/Doctor" class="nav-item nav-link">Dashboard</a>
+                        <a href="/doctorAppointments" class="nav-item nav-link">Appointments</a>
+                        <a href="/Login" class="nav-item nav-link">Logout</a>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -64,7 +65,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/paiten.js"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>
