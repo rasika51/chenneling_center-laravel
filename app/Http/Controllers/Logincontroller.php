@@ -30,11 +30,20 @@ class Logincontroller extends Controller
             $goto = 'Doctor';
         }
     
-        if ($login && Hash::check($password, $login->password)) {
+        if ($login && Hash::check($password, $login->passward)) {
             $id = $login->id;
             $request->session()->put('id', $id);
             $request->session()->put('Is_login', 'yes');
-    
+            
+            // Set role in session
+            if ($role == '1') {
+                $request->session()->put('role', 'admin');
+            } elseif ($role == '2') {
+                $request->session()->put('role', 'patient');
+            } elseif ($role == '3') {
+                $request->session()->put('role', 'doctor');
+            }
+
             return redirect("/successfull?successMessage=Login%20successful&goto={$goto}&check=success&msg=success");
         } else {
             return redirect("/successfull?successMessage=Try%20Again&goto=Login&check=error&msg=Login%20Incorrect");
