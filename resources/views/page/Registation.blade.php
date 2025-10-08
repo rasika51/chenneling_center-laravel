@@ -18,6 +18,16 @@
 
               <form method="POST" action="/Registationnewuser">
                 @csrf
+                
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="row g-3">
                   <div class="col-12">
                     <input
@@ -91,30 +101,32 @@
 
 
                   <div class="col-12">
-                    Marital status
-                    <label class="ms-5">
-                      <input type="checkbox" name="Marital_single" /> Single
-                    </label>
-                    <label class="ms-3">
-                      <input type="checkbox" name="Marital_Married" /> Married
-                    </label>
-                  </div>
-
-
-                  <div class="col-12">
-                    Allegics to mediciine
-                    <label class="ms-5">
-                      <input type="checkbox" name="Allegics_yes" /> yes
-                    </label>
-                    <label class="ms-3">
-                      <input type="checkbox" name="Allegics_no" /> No
-                    </label>
-                  </div>
-
-                  <div class="col-12">
-                    <div class="col-12">
-                        <textarea class="form-control bg-light border-0" rows="5" placeholder="Mention Dieases that your here.." name='Dieases'></textarea>
+                    <label class="form-label">Marital status <span class="text-danger">*</span></label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="marital_status" id="single" value="single" required />
+                      <label class="form-check-label" for="single">Single</label>
                     </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="marital_status" id="married" value="married" required />
+                      <label class="form-check-label" for="married">Married</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Allergies to medicine <span class="text-danger">*</span></label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="allergies" id="allergies_yes" value="yes" required />
+                      <label class="form-check-label" for="allergies_yes">Yes</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="allergies" id="allergies_no" value="no" required />
+                      <label class="form-check-label" for="allergies_no">No</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Diseases <span class="text-danger">*</span></label>
+                    <textarea class="form-control bg-light border-0" rows="5" placeholder="Mention diseases that you have (if none, please write 'None')" name='Dieases' required></textarea>
                   </div>
 
                   <div class="col-12">
