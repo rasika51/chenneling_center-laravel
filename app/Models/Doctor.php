@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Doctor extends Model
+class Doctor extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+    
     protected $table = 'doctor';
 
     protected $fillable = [
@@ -20,6 +22,14 @@ class Doctor extends Model
         "ChangingDate",
         "ChangingTime",
         "Fees"
+    ];
 
-    ] ;
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
 }
