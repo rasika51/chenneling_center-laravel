@@ -1,29 +1,47 @@
 @extends('layouts.doctor')
 @section('doctor-content')
     @if ($id and $Is_login == 'yes')
-        <div id="appointment-container">
-
-            <h3 class="mb-5">Patient Details</h3>
-            <label for="datetime-picker" class="lb">Select Date and Time:</label>
-            <input type="datetime-local" id="datetime-picker">
-
-            <div id="table-container">
-                <table id="appointment-table">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Patient Name</th>
-                            <th>Gender</th>
-                            <th>Date of Birth</th>
-                        </tr>
-                    </thead>
-                    <tbody id="table-body">
-                        <td>patient.no </td>
-                        <td>pame</td>
-                        <td>patder</td>
-                        <td>dob</td>
-                    </tbody>
-                </table>
+        <div class="container-fluid" style="padding: 2rem;">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mb-4">Doctor Dashboard</h2>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Welcome, Doctor!</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Today's Appointments</h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Patient Name</th>
+                                                    <th>Time</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="3" class="text-center">No appointments scheduled for today</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Quick Actions</h5>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" type="button">View All Appointments</button>
+                                        <button class="btn btn-success" type="button">Add Patient Notes</button>
+                                        <button class="btn btn-info" type="button">Update Schedule</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     @else
