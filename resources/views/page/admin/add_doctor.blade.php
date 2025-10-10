@@ -4,6 +4,17 @@
     <link rel="stylesheet" href="{{ asset('assets/css/doctor.css') }}">
     <form method="POST" action="{{ url('addnewdoctordata') }}">
         @csrf
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
         <div class="form-container">
 
             <h3 class="mb-5">Add new Doctors</h3>
@@ -16,24 +27,23 @@
             <div class="form-group">
                 <label for="doctorName">Doctor Name</label>
                 <input type="text" name="doctorName" placeholder="Enter Doctor Name"
-                    class="form-control bg-light border-0">
+                    class="form-control bg-light border-0" required>
             </div>
             <div class="form-group">
                 <label for="specialization">Specialization</label>
                 {{-- <input type="text" name="specialization" placeholder="What Specialization"
                     class="form-control bg-light border-0"> --}}
 
-                    <select name="Specialization" class="form-control bg-light border-0">
-
-                        @foreach($specializations as $specialization)
-                            <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
-                        @endforeach
-
+                    <select name="Specialization" class="form-control bg-light border-0" required>
+                        <option value="">Select Specialization</option>
+                        <option value="Dental">Dental</option>
+                        <option value="Heart">Heart</option>
+                        <option value="Other">Other</option>
                     </select>
             </div>
             <div class="form-group">
                 <label for="gender">Gender</label>
-                <select name="gender" class="form-control bg-light border-0">
+                <select name="gender" class="form-control bg-light border-0" required>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -41,7 +51,7 @@
             <div class="form-group">
                 <label for="phoneNumber">Phone Number</label>
                 <input type="text" name="phoneNumber" placeholder="Enter the Phone number"
-                    class="form-control bg-light border-0">
+                    class="form-control bg-light border-0" required>
 
             </div>
             {{-- <div class="form-group">
@@ -51,11 +61,11 @@
             </div> --}}
             <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="text" name="Email" placeholder="Enter Email" class="form-control bg-light border-0">
+                <input type="email" name="Email" placeholder="Enter Email" class="form-control bg-light border-0" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Enter Password" class="form-control bg-light border-0">
+                <input type="password" name="password" placeholder="Enter Password" class="form-control bg-light border-0" required>
             </div>
             <div class="form-group">
                 <label for="changingDate">Changing Date</label>
@@ -67,7 +77,7 @@
             </div>
             <div class="form-group">
                 <label for="changingFees">Changing Fees</label>
-                <input type="text" name="changingFees" placeholder="Changing Fees" class="form-control bg-light border-0">
+                <input type="number" name="changingFees" placeholder="Changing Fees" class="form-control bg-light border-0" required>
             </div>
 
             <div class="button-container">
