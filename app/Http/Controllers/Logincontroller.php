@@ -12,25 +12,44 @@ class Logincontroller extends Controller
 {
     public function handleLoginData(Request $request)
     {
+        // Clear any existing session
+        $request->session()->flush();
         $request->session()->put('Is_login', 'no');
+        
+        // Validate input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+            'role' => 'required|in:1,2,3'
+        ], [
+            'email.required' => 'Email is required',
+            'email.email' => 'Please enter a valid email address',
+            'password.required' => 'Password is required',
+            'password.min' => 'Password must be at least 6 characters',
+            'role.required' => 'Please select a role',
+            'role.in' => 'Please select a valid role'
+        ]);
+
         $email = $request->input('email');
         $password = $request->input('password');
         $role = $request->input('role');
+        $login = null;
+        $goto = '';
     
+        // Find user based on role
         if ($role == '1') {
             $login = Admin::where('email', '=', $email)->first();
             $goto = 'adminDashboard';
-    
         } elseif ($role == '2') {
             $login = Patient::where('email', '=', $email)->first();
-            $goto = 'patien';
-    
+            $goto = 'patient';
         } elseif ($role == '3') {
             $login = Doctor::where('email', '=', $email)->first();
             $goto = 'Doctor';
         }
     
-        if ($login && Hash::check($password, $login->passward)) {
+        // Check if user exists and password is correct
+        if ($login && Hash::check($password, $login->password)) {
             $id = $login->id;
             $request->session()->put('id', $id);
             $request->session()->put('Is_login', 'yes');
@@ -46,9 +65,11 @@ class Logincontroller extends Controller
 
             return redirect("/successfull?successMessage=Login%20successful&goto={$goto}&check=success&msg=success");
         } else {
-            return redirect("/successfull?successMessage=Try%20Again&goto=Login&check=error&msg=Login%20Incorrect");
+            // Return to login with error message
+            return redirect()->back()->withErrors([
+                'login' => 'Invalid email, password, or role. Please try again.'
+            ])->withInput($request->except('password'));
         }
-    
     }
 
 
