@@ -87,16 +87,20 @@ class DoctorController extends Controller
 
     public function selecteddoctors(Request $request)
     {
-        $selectvalue = $request->input('selectedSpecialization'); // Corrected input key
+        $selectvalue = $request->input('selectedSpecialization');
 
-        $doctors = DB::select("SELECT * FROM doctor WHERE Specilization = '$selectvalue'"); // Corrected query syntax
+        // Use parameterized query to prevent SQL injection
+        $doctors = DB::select("SELECT * FROM doctor WHERE Specilization = ?", [$selectvalue]);
 
         return response()->json(['doctors' => $doctors]);
     }
     public function selecteddoctorsname(Request $request)
     {
         $selectvalue = $request->input('selectedDoctor');
-        $doctors = DB::select("SELECT * FROM doctor WHERE id = '$selectvalue'"); // Corrected query syntax
+        
+        // Use parameterized query to prevent SQL injection
+        $doctors = DB::select("SELECT * FROM doctor WHERE id = ?", [$selectvalue]);
+        
         return response()->json(['doctors' => $doctors]);
     }
 
