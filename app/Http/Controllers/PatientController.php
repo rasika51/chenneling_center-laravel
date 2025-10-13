@@ -79,8 +79,8 @@ class PatientController extends Controller
             'password' => bcrypt($password), // Encrypt password before saving!
         ]);
         $newPatient->save();
-        $goto = 'adminDashboard';
-        return redirect("/successfull?successMessage=Added%20successful&goto={$goto}&check=success&msg=success");
+        $goto = 'patient';
+        return redirect("/successfull?successMessage=Registration%20successful&goto={$goto}&check=success&msg=success");
     }
 
     public function passthepayment(request $request)
@@ -102,41 +102,64 @@ class PatientController extends Controller
     public function getappoinment(request $request)
     {
         $id = $request->session()->get('id');
+        $Is_login = $request->session()->get('Is_login');
         $role = $request->session()->get('role', 'patient'); // Default to patient
+
+        // Debug information
+        \Log::info('PatientController::getappoinment called', [
+            'id' => $id,
+            'Is_login' => $Is_login,
+            'role' => $role
+        ]);
 
         // Check if this is a doctor by checking if the ID exists in doctor table
         $isDoctor = DB::select("SELECT id FROM doctor WHERE id = ?", [$id]);
         
         if (!empty($isDoctor) || $role === 'doctor') {
-            // For doctors, get appointments where they are the doctor
-            $getpaymentdoctors = DB::select("SELECT * FROM bookings WHERE doctorid = ? AND payment_status = 'paid'", [$id]);
-            return view('page.doctor.appointments', ['getpaymentdoctors' => $getpaymentdoctors]);
+            // For doctors, get their future appointments only
+            $today = date('Y-m-d');
+            $getpaymentdoctors = DB::select("SELECT * FROM bookings WHERE doctorid = ? AND payment_status = 'paid' AND date >= ? ORDER BY date ASC, time ASC", [$id, $today]);
+            return view('page.doctor.appointments', ['getpaymentdoctors' => $getpaymentdoctors, 'id' => $id, 'Is_login' => $Is_login]);
         } else {
-            // For patients, get their appointments
-            $getpaymentdoctors = DB::select("SELECT * FROM bookings WHERE userid = ? AND payment_status = 'paid'", [$id]);
-            return view('page.patient.View_Appointments', ['getpaymentdoctors' => $getpaymentdoctors]);
+            // For patients, get their future appointments only
+            $today = date('Y-m-d');
+            $getpaymentdoctors = DB::select("SELECT * FROM bookings WHERE userid = ? AND payment_status = 'paid' AND date >= ? ORDER BY date ASC, time ASC", [$id, $today]);
+            
+            // If no appointments found, pass empty array
+            if (empty($getpaymentdoctors)) {
+                $getpaymentdoctors = [];
+            }
+            
+            return view('page.patient.View_Appointments', [
+                'getpaymentdoctors' => $getpaymentdoctors,
+                'id' => $id,
+                'Is_login' => $Is_login
+            ]);
         }
     }
 
     public function selectAppoinment(request $request)
     {
         $selectvalue = $request->input('selectedappointment');
-        $appointment = DB::select("SELECT * FROM bookings WHERE id = '$selectvalue'");
+        $appointment = DB::select("SELECT * FROM bookings WHERE id = ?", [$selectvalue]);
 
-        foreach ($appointment as $appointmentData) {
-
+        if (!empty($appointment)) {
+            $appointmentData = $appointment[0];
             $userid = $appointmentData->userid;
             $doctorid = $appointmentData->doctorid;
 
-            $userdata = DB::select("SELECT * FROM user WHERE id = '$userid'");
-            $allAppoiment = $allAppointments = DB::table('bookings')
+            // Use patients table instead of user table
+            $userdata = DB::select("SELECT * FROM patients WHERE id = ?", [$userid]);
+            $allAppoiment = DB::table('bookings')
                 ->where('doctorid', $doctorid)
                 ->orderBy('add_time', 'asc')
                 ->get();
+        } else {
+            $userdata = [];
+            $allAppoiment = [];
         }
 
         return response()->json(['appointment' => $appointment, 'userdata' => $userdata, 'Allappoinment' => $allAppoiment]);
-
     }
 
 }
