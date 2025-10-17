@@ -14,7 +14,7 @@ return new class extends Migration{
             $table->string('Gender');
             $table->string('contact_no');
             $table->string('email')->unique();
-            $table->string('passward');
+            $table->string('password');
             $table->string('ChangingDate');
             $table->string('ChangingTime');
             $table->decimal('Fees', 8, 2);
