@@ -9,7 +9,7 @@ class booking extends Model
 {
     use HasFactory;
 
-    protected $table = 'doctor_speclist';
+    protected $table = 'bookings';
     protected $fillable = [
         "userid",
         "doctorid",
@@ -19,7 +19,11 @@ class booking extends Model
         "payment_status",
         "status",
         "patient_name"
-
-    ] ;
-    public $timestamps = false;
+    ];
+    
+    protected $casts = [
+        'date' => 'date',
+        'time' => 'datetime:H:i:s',
+        'add_time' => 'datetime'
+    ];
 }
