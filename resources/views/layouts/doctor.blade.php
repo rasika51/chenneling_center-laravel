@@ -57,7 +57,7 @@
     </div>
     <!-- Navbar End -->
 
-    @yield('doctor-content');
+    @yield('doctor-content')
 
 
     <!-- JavaScript Libraries -->
